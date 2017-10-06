@@ -1,0 +1,94 @@
+#! /bin/bash
+
+g=$(tput setaf 2) # Green
+y=$(tput setaf 3) # Yellow
+b=$(tput setaf 4) # Blue
+p=$(tput setaf 5) # Purple
+c=$(tput setaf 6) # Cyan
+w=$(tput setaf 7) # White
+n=$(tput sgr0) # Text reset
+
+echo -e "\033[31m           0000\033[0m_____________0000________0000000000000000__000000000000000000+\n\033[31m         00000000\033[0m_________00000000______000000000000000__0000000000000000000+\n\033[31m        000\033[0m____000_______000____000_____000_______0000__00______0+\n\033[31m       000\033[0m______000_____000______000_____________0000___00______0+\n\033[31m      0000\033[0m______0000___0000______0000___________0000_____0_____0+\n\033[31m      0000\033[0m______0000___0000______0000__________0000___________0+\n\033[31m      0000\033[0m______0000___0000______0000_________000___0000000000+\n\033[31m      0000\033[0m______0000___0000______0000________0000+\n\033[31m       000\033[0m______000_____000______000________0000+\n\033[31m        000\033[0m____000_______000____000_______00000+\n\033[31m         00000000\033[0m_________00000000_______0000000+\n\033[31m           0000\033[0m_____________0000________000000007;"
+echo ""
+echo ""
+
+echo "${b}Bonjour je vais vous aider à trouver le meuble qu'il vous faut !${n}";
+echo "Pour commencer, pour quelle pièce cherchez-vous un meuble ?";
+choice="";
+
+select response in "salon" "salle de bain" "chambre";do
+  case $response in
+    "salon" ) choice="salon";break;;
+    "salle de bain" ) choice="salle de bain";break;;
+    "chambre" ) choice="chambre";break;;
+  esac
+done
+echo -------------------------------------------------------------
+echo "De quelle couleur doit être le meuble qui ira dans votre "$choice" ?";
+choice2="";
+
+select response in "blanc" "noir" "gris" "marron";do
+  case $response in
+    "blanc" ) choice2="blanc";break;;
+    "noir" ) choice2="noir";break;;
+    "gris" ) choice2="gris";break;;
+    "marron" ) choice2="marron";break;;
+  esac
+done
+echo -------------------------------------------------------------
+  echo "${b}Donc, vous voulez un meuble "$choice2" pour votre "$choice"...${n}"
+  echo "Et maintenant determinons la forme pour votre meuble :"
+  choise3="";
+
+  select response in "carré" "rond" "rectangulaire";do
+    case $response in
+      "carré" ) choice3="carré";break;;
+      "rond" ) choice3="rond";break;;
+      "rectangulaire" ) choice3="rectangulaire";break;;
+    esac
+  done
+echo -------------------------------------------------------------
+  echo "${b}Si je comprends bien, le meuble "$choice2" pour votre "$choice" doit être "$choice3". ${n}"
+
+echo "Quel magasin correspond le mieux à votre personnalité ?";
+magasin="";
+
+select response in "conforama" "ikea" "but";do
+  case $response in
+    "conforama" ) magasin="conforama";break;;
+    "ikea" ) magasin="ikea";break;;
+    "but" ) magasin="but";break;;
+  esac
+done
+echo -------------------------------------------------------------
+echo -e "${b}D'accord, je vais voir ce que "$magasin" a à vous proposer, mais d'abord, il me faut...${n}"
+
+read -p 'Votre nom : ' NOM;
+read -p 'Votre prénom : ' Prenom;
+read -p 'Votre adresse : ' Adresse;
+
+echo -------------------------------------------------------------
+
+echo "Nous allons récapituler votre SUPER MEGA GENIALE commande. Vous êtes Monsieur/Madame "$NOM" "$Prenom" et vous habitez à "$Adresse"."
+echo "Vous êtes à la recherche d'un meuble "$choice2", "$choice3", pour votre "$choice"."
+echo "(Au cas où on ne l'aurait pas assez répêté...)"
+echo ""
+echo -------------------------------------------------------------
+echo "Validez-vous la recherche du meuble "$choice2", "$choice3", pour votre "$choice" ?"
+echo "(Promis, c'est la dernière fois qu'on vous le demande !)";
+choix=""
+
+select response in "oui" "non";do
+  case $response in
+    "oui" ) choix="oui";break;;
+    "non" ) choix="non";break;;
+  esac
+done
+
+if [ "$choix" == "oui" ]
+then
+  echo -e "Je vous propose le \033[31;1;4;5;7mARCHTUNGARFATI\033[0m de chez "$magasin" ! ${p}Heureux ? Revenez-nous voir !${n}"
+else
+  echo "${p}Merci pour la perte de temps, à jamais !${n}"
+fi
+
